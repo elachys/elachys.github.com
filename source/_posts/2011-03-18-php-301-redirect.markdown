@@ -1,0 +1,23 @@
+---
+date: '2011-03-18 04:20:26'
+layout: post
+slug: php-301-redirect
+status: publish
+title: PHP 301 Redirect
+wordpress_id: '139'
+categories:
+- PHP
+---
+
+Just using the standard:
+
+header("Location: http://www.google.co.uk");
+
+uses a 302 redirect.
+
+However, doing:
+
+header("HTTP/1.1 301 Moved Permanently");
+header("Location: http://www.google.co.uk");
+
+Does a proper 301 permanent redirect.

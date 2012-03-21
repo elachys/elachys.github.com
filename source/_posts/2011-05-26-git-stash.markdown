@@ -1,0 +1,51 @@
+---
+date: '2011-05-26 10:05:00'
+layout: post
+slug: git-stash
+status: publish
+title: Git stash
+wordpress_id: '206'
+categories:
+- Git
+---
+
+Made changes to your local files but don't want to commit them yet?
+Stash your changes, do something else. Commit, and load back in your changes.
+
+
+## Stash a commit
+
+
+This will stash a commit with a helpful name / phrase that you can use to jog your memory later on.
+`$ git stash save usefulname`
+
+
+## List stashed commits
+
+
+This will show all your currently stashed commits.
+`$ git stash list
+stash@{0}: WIP on branch-name ....
+stash@{1}: WIP on dbranch-name: ....
+stash@{2}: On branch-name: ....
+`
+
+
+## Apply a stash
+
+
+You can revert back to a stash at any time as follows.
+`$ git stash apply stash@{0}`
+
+
+## Removing a stash
+
+
+Even after applying a stash, they still hang around. You can remove them as follows:
+`$ git stash drop stash@{0}`
+
+
+## Clear all stashed entries
+
+
+`$ git stash clear`

@@ -1,0 +1,38 @@
+---
+date: '2011-04-20 11:37:43'
+layout: post
+slug: siege
+status: publish
+title: Siege
+wordpress_id: '159'
+categories:
+- Linux
+- magento
+- PHP
+---
+
+## Installing Siege
+
+
+`wget ftp://ftp.joedog.org/pub/siege/siege-latest.tar.gz
+tar xvzf siege-latest.tar.gz
+cd siege-2.70/
+# if you're on a fresh ubuntu, get this package first
+sudo apt-get install build-essential
+./configure
+make && sudo make install`
+
+
+## Running Siege
+
+
+10 users for 1 minute
+`siege -c10 -t1M http://www.google.com`
+A better test, against a magento sitemap
+`#categories
+curl http://yourmagentostore.com/sitemap.xml | sed 's/\/\\n/g' | grep 0.5 | sed 's/.*loc>\(.*\)<\/loc.*/\1/g' > urls.txt
+#products
+curl http://yourmagentostore.com/sitemap.xml | sed 's/\/\\n/g' | grep 1.0 | sed 's/.*loc>\(.*\)<\/loc.*/\1/g' >>urls.txt`
+Then run a siege against the url's found
+`siege -i -c25 -t30s -f urls.txt`
+
