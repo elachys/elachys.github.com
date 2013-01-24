@@ -10,17 +10,14 @@ categories:
 - PHP
 ---
 
-`
-$alltables = mysql_query("SHOW TABLES");`
-`
-while ($table = mysql_fetch_assoc($alltables))
-`
-`{`
+{%codeblock lang:php %}
+<?php
+$alltables = mysql_query("SHOW TABLES");
 
-`foreach ($table as $db => $tablename)`
-
-`{`
-
-`mysql_query("OPTIMIZE TABLE '". mysql_real_escape_string($tablename) ."'");`
-`
-}}`
+while ($table = mysql_fetch_assoc($alltables)) {
+    foreach ($table as $db => $tablename) {
+        mysql_query("OPTIMIZE TABLE '". mysql_real_escape_string($tablename) ."'");
+    }
+}
+?>
+{% endcodeblock %}

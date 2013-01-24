@@ -10,11 +10,7 @@ categories:
 ---
 
 Quickest way to add GD support to an existing php installation under Fedora.
-`
-yum install php-gd
-`
+    sudo yum install php-gd
 
 Once That has finished. Restart Apache. I tend to use:
-`
-httpd -k graceful
-`
+    sudo httpd -k graceful

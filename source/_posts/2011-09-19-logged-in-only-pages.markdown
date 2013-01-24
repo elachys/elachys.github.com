@@ -11,12 +11,14 @@ categories:
 ---
 
 Add the following code to your controller if you don't want it to be accessible by users who aren't logged in.
-`public function preDispatch()
-    {
-        parent::preDispatch();
+{% codeblock lang:php %}
+<?php
+public function preDispatch() {
+    parent::preDispatch();
 
-        if (!Mage::getSingleton('customer/session')->authenticate($this)) {
-            $this->setFlag('', 'no-dispatch', true);
-        }
+    if (!Mage::getSingleton('customer/session')->authenticate($this)) {
+        $this->setFlag('', 'no-dispatch', true);
     }
-`
+}
+?>
+{% endcodeblock %}

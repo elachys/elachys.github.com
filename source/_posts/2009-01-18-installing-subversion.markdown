@@ -10,48 +10,44 @@ categories:
 ---
 
 Firstly, get subversion using your favorite package manager.
-`
-yum install subversion`
+    yum install subversion
 
 To see if subversion is now installed use:
-`
-rpm -qa |grep subversion
-`
+    rpm -qa |grep subversion
+
 
 
 ### Mod_dav_svn
 
-
-`yum install mod_dav_svn`
+    yum install mod_dav_svn
 
 
 ### Setting up subversion repositories
 
 
-`
+{% codeblock lang:sh %}
 mkdir /var/www/html/svn.mydomain.com
 mkdir -p /var/www/html/svn.mydomain.com/repos
 mkdir /var/www/html/svn.mydomain.com/users
 mkdir /var/www/html/svn.mydomain.com/permissions
-`
-and now we set our permissions
-`
-chown -fhR apache.apache /var/www/html/svn.mydomain.com`
 
+#and now we set our permissions
+
+chown -fhR apache.apache /var/www/html/svn.mydomain.com`
+{% endcodeblock %}
 
 ### Creating our first repository
 
-
-`
+{% codeblock lang:sh %}
 svnadmin create /var/www/html/svn.mydomain.com/reposname
-`
+{% endcodeblock %}
 
 
 ### Apache configuration
 
 
 add to /etc/httpd/conf.d/subversion.conf
-`
+{% codeblock %}
 <Location /svn>
 DAV svn
 SVNParentPath /var/www/html/svn.mydomain.com/repos`
@@ -67,23 +63,22 @@ AuthUserFile /etc/svn-passwd
 Require valid-user
 #   </LimitExcept>
 </Location>
-
+{% endcodeblock %}
 
 ### Creating a subversion user
 
-
-`
+{%codeblock lang:sh %}
 htpasswd -c /etc/svn-passwd myusername
-`
-Then enter your chosen password
 
+#Then enter your chosen password
+{% endcodeblock %}
 
 ### Initial Import
 
 
-`
+{% codeblock lang:sh %}
 svn import -m "initial release" http://svn.domain.com/svn/reposname
-`
+{% endcodeblock %}
 
 
 ### Standard Repository Layout

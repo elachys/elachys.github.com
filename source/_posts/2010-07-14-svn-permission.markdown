@@ -11,25 +11,24 @@ categories:
 
 apache config:
 
-`
-DAV             svn
-SVNPath         /path/to/svnroot/barneyb`
-`
-AuthType        Basic
-AuthName        "Subversion/Trac"
-AuthUserFile    /path/to/apache/conf/htpasswd`
-`
-AuthzSVNAccessFile  /path/to/apache/conf/authz.conf`
-`
-Satisfy     any
-Require     valid-user`
+    DAV             svn
+    SVNPath         /path/to/svnroot/barneyb
 
-AuthzSVNAccessFile
-[/bicycle_dashboard] denotes a specific directory.
-`
-[/]
-barneyb = rw`
-`
-[/bicycle_dashboard]
-* = r
-barneyb = rw`
+    AuthType        Basic
+    AuthName        "Subversion/Trac"
+    AuthUserFile    /path/to/apache/conf/htpasswd
+
+    AuthzSVNAccessFile  /path/to/apache/conf/authz.conf
+
+    Satisfy     any
+    Require     valid-user
+
+    AuthzSVNAccessFile
+    [/bicycle_dashboard] denotes a specific directory.
+
+    [/]
+    barneyb = rw
+
+    [/bicycle_dashboard]
+    * = r
+    barneyb = rw

@@ -9,5 +9,6 @@ categories:
 - MySQL
 - PHP
 ---
-
-`date("Y-m-d H:i:s",$timestamp);`
+{% codeblock lang:php %}
+<?php echo date("Y-m-d H:i:s",$timestamp); ?>
+{% endcodeblock %}

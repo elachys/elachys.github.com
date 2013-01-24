@@ -9,4 +9,4 @@ categories:
 - Linux
 ---
 
-`find /path/to/search -name '*.php' -type f -exec grep -i "string to search for" {} \; -print`
+    find /path/to/search -name '*.php' -type f -exec grep -i "string to search for" {} \; -print

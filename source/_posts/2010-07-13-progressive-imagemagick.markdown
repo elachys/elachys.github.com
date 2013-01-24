@@ -13,4 +13,4 @@ categories:
 
 Make your output jpeg's progressive with the following:
 
-convert source.jpg -interlace destination.jpg
+    convert source.jpg -interlace destination.jpg

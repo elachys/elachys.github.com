@@ -11,12 +11,13 @@ categories:
 
 ### Creating the database
 
-
-`Create Database mydbname;`
-
+{% codeblock lang:sql %}
+Create Database mydbname;
+{% endcodeblock %}
 
 ### Granting the user
 
 
-` GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP  ON mydatabase.* TO 'username'@'localhost' IDENTIFIED BY 'mypassword';
-`
+{% codeblock lang:sql %}
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP  ON mydatabase.* TO 'username'@'localhost' IDENTIFIED BY 'mypassword';
+{% endcodeblock %}

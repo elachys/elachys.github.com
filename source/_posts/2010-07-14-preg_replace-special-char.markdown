@@ -13,4 +13,6 @@ Replace special chars that are html encoded with their plain text equivalents
 
 eg. Turns &#8216; into a normal character
 
-`preg_replace('/&#(\d+);/e','chr($1)','my weird string');`
+{% codeblock lang:php %}
+<?php echo preg_replace('/&#(\d+);/e','chr($1)','my weird string'); ?>
+{% endcodeblock %}

@@ -11,7 +11,4 @@ categories:
 
 This lets plesk pick up all vhost.conf changes server wide.
 
-
-`
-/usr/local/psa/admin/bin/websrvmng -a
-`
+    /usr/local/psa/admin/bin/websrvmng -a

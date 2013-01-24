@@ -12,11 +12,10 @@ categories:
 First, you need to grant permissions to one user for both databases.
 
 then, when running queries you specify your database at the begining. eg:
-`
-SELECT * from `database1`.`table`
-UNION
-SELECT * from `database2`.`table` ORDER BY 1
-`
+
+    SELECT * from `database1`.`table`
+    UNION
+    SELECT * from `database2`.`table` ORDER BY 1
 
 This will merge the results together removing duplicates and the order by will happen to both tables.
 

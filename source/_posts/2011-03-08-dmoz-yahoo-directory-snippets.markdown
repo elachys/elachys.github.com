@@ -10,5 +10,6 @@ categories:
 ---
 
 You can stop google, yahoo and msn search engines displaying dmoz and yahoo directory snippets for individual pages on your website by using the following meta tag in the heading of your pages.
-
+{% codeblock lang:html %}
 <meta name="robots" content="noydir, noodp" />
+{% endcodeblock %}

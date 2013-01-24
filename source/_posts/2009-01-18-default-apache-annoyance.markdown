@@ -13,12 +13,12 @@ categories:
 
 You must change /etc/httpd/conf/httpd.conf
 
-AllowOverride None
+    AllowOverride None
 
 to
 
-AllowOverride All
+    AllowOverride All
 
 then restart apache with:
 
-httpd -k graceful
+    sudo httpd -k graceful

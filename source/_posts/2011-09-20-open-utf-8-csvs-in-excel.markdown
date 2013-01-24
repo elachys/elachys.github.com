@@ -10,7 +10,8 @@ categories:
 ---
 
 Excel requires a BOM at the beginning of the file. For UTF-8 it can be represented as:
+{% codeblock lang:php %}
+<?php echo "\xef\xbb\xbf"; ?>
 
-`<?php echo "\xef\xbb\xbf"; ?>`
-
-`<?php $fixedcsv = "\xef\xbb\xbf" . $brokencsv; ?>`
+<?php $fixedcsv = "\xef\xbb\xbf" . $brokencsv; ?>
+{% endcodeblock %}

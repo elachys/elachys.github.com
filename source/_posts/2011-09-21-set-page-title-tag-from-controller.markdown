@@ -9,13 +9,16 @@ categories:
 - magento
 ---
 
-`$this->getLayout()->getBlock('head')->setTitle($this->__('My Account'));`
+    $this->getLayout()->getBlock('head')->setTitle($this->__('My Account'));
 
 eg:
-` public function indexAction(){
-$this->loadLayout();
-$this->_initLayoutMessages('customer/session');
-$this->getLayout()->getBlock('head')->setTitle($this->__('My Account'));
-$this->renderLayout();`
-
+{% codeblock lang:php %}
+<?php
+public function indexAction(){
+    $this->loadLayout();
+    $this->_initLayoutMessages('customer/session');
+    $this->getLayout()->getBlock('head')->setTitle($this->__('My Account'));
+    $this->renderLayout();
 }
+?>
+{% endcodeblock %}

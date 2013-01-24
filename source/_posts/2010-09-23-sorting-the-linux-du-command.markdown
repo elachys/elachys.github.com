@@ -9,7 +9,7 @@ categories:
 - Linux
 ---
 
-du -ak / | sort -nr | less
+    du -ak / | sort -nr | less
 
 This gives you all the files and directories on the system, in descending order by size. Directories are listed along with files and show the total blocks in the subtree under them.
 
