@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Load balancing / high availability for the LAMP stack - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Load balancers Load balancers sit in-front of the web and database servers. These decide which web server each HTTP request from a client goes to. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://elachys.github.com/blog/2010/09/03/load-balancing-high-availability-for-the-lamp-stack">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:elachys.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Load Balancing / High Availability for the LAMP Stack</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-03T10:46:34+01:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1>Load balancers</h1>
+
+<p>Load balancers sit in-front of the web and database servers. These decide which web server each HTTP request from a client goes to.</p>
+
+<p>After your firewall, this is the first thing that gets it.</p>
+
+<p>Pen is a linux app which does this extremely simply and can be installed from apt-get. An example syntax would be:
+<code>sudo pen –df 80 192.168.1.105 192.168.1.106</code></p>
+
+<p>-df keeps pen running in the foreground and also displays debug info (not what you want for a production configuration). You need to use sudo for pen on ports below 1024.</p>
+
+<p>80 is the port pen is monitoring (the HTTP port)</p>
+
+<p>After that it’s just a space separated list of your web servers.</p>
+
+<h2>PHP Considerations</h2>
+
+<p>Your PHP file based sessions will no longer work, switch to network storage or use mysql. Your web servers are now stateless as the user could arrive on a different server for each request.</p>
+
+<hr />
+
+<h1>Web servers</h1>
+
+<p>Just your standard installs of apache and php running. No need for mysql here. I would recommend keeping the same httpd.conf file on each server to reduce confusion. These servers are cheap and disposable.</p>
+
+<h2>PHP Considerations</h2>
+
+<p>Saving state across multiple webservers might become a problem. Standard PHP file based sessions will be bound to one webserver if no network storage is used. Alternatively, switching your sessions to MySQL keeps your webservers stateless and is much easier. You can overwrite PHP’s standard sessions handler pretty easily and replace it with a MySQL one.</p>
+
+<hr />
+
+<h1>Database servers</h1>
+
+<p>Linux installs running MySQL. These are generally broken into two types, master and slave. There is usually a single master who handles all the writes (INSERT / UPDATE queries) .</p>
+
+<p>The complex reads (SELECT queries) are handled by any of the mysql slaves. Spend your money on a good master as you only get one without mysql enterprise as standard MySQL doesn’t support  a multimaster setup out of the box.</p>
+
+<h2>PHP Considerations</h2>
+
+<p>PHP’s mysql_connect should use your mysql servers hostnames and not localhost.</p>
+
+<p>You might want to separate your reads and writes to point to the seperate MySQL master / slave hostnames. This is not mandatory as you can use mysql-proxy to monitor each request and send it to either the master or a slave. Although i would suggest using mysql-proxy in this way only for legacy systems where code changes are not an option.</p>
+
+<p>You will also want to keep a reference to each of your mysql connections.</p>
+
+<hr />
+
+<h1>Conclusions</h1>
+
+<p>One thing I noticed is that using IP addresses in your configuration files could get seriously confusing. I would suggest making some dummy hostnames and settings the IP’s in the hosts file for each machine. That way, if IP addresses change, you only have to update one file on each host.</p>
+
+<p>Also, I wouldn’t use pen for anything big. Instead, invest in a good hardware load balancer. Preferably two with heartbeat so if one goes down the other takes over. Ultramonkey might also offer a solution if hardware load balancers are too expensive.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-03T10:46:34+01:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/mysql/'>MySQL</a>, <a class='category' href='/blog/categories/php/'>PHP</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://elachys.github.com/blog/2010/09/03/load-balancing-high-availability-for-the-lamp-stack/" data-via="" data-counturl="http://elachys.github.com/blog/2010/09/03/load-balancing-high-availability-for-the-lamp-stack/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/08/31/iphone-uicolor/" title="Previous Post: iphone UIColor">&laquo; iphone UIColor</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/09/23/sorting-the-linux-du-command/" title="Next Post: Sorting the linux du command">Sorting the linux du command &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/11/16/canonical-tags-on-cms-pages/">Canonical tags on cms pages</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/18/setup-virtualhosts-under-mac-osx/">Setup virtualhosts under mac osx</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/10/update-language-file-per-template/">Update language file per template</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/21/set-page-title-tag-from-controller/">Set page title tag from controller</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/20/open-utf-8-csvs-in-excel/">Open UTF-8 CSV's in Excel</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

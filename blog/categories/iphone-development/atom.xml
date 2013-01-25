@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: iPhone Development | My Octopress Blog]]></title>
+  <link href="http://elachys.github.com/blog/categories/iphone-development/atom.xml" rel="self"/>
+  <link href="http://elachys.github.com/"/>
+  <updated>2013-01-25T10:18:59+00:00</updated>
+  <id>http://elachys.github.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[iphone UIColor]]></title>
+    <link href="http://elachys.github.com/blog/2010/08/31/iphone-uicolor/"/>
+    <updated>2010-08-31T11:24:53+01:00</updated>
+    <id>http://elachys.github.com/blog/2010/08/31/iphone-uicolor</id>
+    <content type="html"><![CDATA[<p>[UIColor redColor]
+or
+[UIColor colorWithRed: green: blue: alpha:]
+This takes values of RGB/255 for each color</p>
+]]></content>
+  </entry>
+  
+</feed>

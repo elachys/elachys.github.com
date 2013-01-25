@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Installing Subversion - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Firstly, get subversion using your favorite package manager. yum install subversion To see if subversion is now installed use: rpm -qa |grep &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://elachys.github.com/blog/2009/01/18/installing-subversion">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:elachys.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Installing Subversion</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-18T06:11:18+00:00" pubdate data-updated="true">Jan 18<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Firstly, get subversion using your favorite package manager.</p>
+
+<pre><code>yum install subversion
+</code></pre>
+
+<p>To see if subversion is now installed use:</p>
+
+<pre><code>rpm -qa |grep subversion
+</code></pre>
+
+<h3>Mod_dav_svn</h3>
+
+<pre><code>yum install mod_dav_svn
+</code></pre>
+
+<h3>Setting up subversion repositories</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>mkdir /var/www/html/svn.mydomain.com
+</span><span class='line'>mkdir -p /var/www/html/svn.mydomain.com/repos
+</span><span class='line'>mkdir /var/www/html/svn.mydomain.com/users
+</span><span class='line'>mkdir /var/www/html/svn.mydomain.com/permissions
+</span><span class='line'>
+</span><span class='line'><span class="c">#and now we set our permissions</span>
+</span><span class='line'>
+</span><span class='line'>chown -fhR apache.apache /var/www/html/svn.mydomain.com<span class="sb">`</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Creating our first repository</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>svnadmin create /var/www/html/svn.mydomain.com/reposname
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Apache configuration</h3>
+
+<p>add to /etc/httpd/conf.d/subversion.conf</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;Location /svn>
+</span><span class='line'>DAV svn
+</span><span class='line'>SVNParentPath /var/www/html/svn.mydomain.com/repos`
+</span><span class='line'>
+</span><span class='line'># Limit write permission to list of valid users.
+</span><span class='line'>#   &lt;LimitExcept GET PROPFIND OPTIONS REPORT>
+</span><span class='line'># Require SSL connection for password protection.
+</span><span class='line'># SSLRequireSSL
+</span><span class='line'>
+</span><span class='line'>AuthType Basic
+</span><span class='line'>AuthName "Subversion Repos"
+</span><span class='line'>AuthUserFile /etc/svn-passwd
+</span><span class='line'>Require valid-user
+</span><span class='line'>#   &lt;/LimitExcept>
+</span><span class='line'>&lt;/Location></span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Creating a subversion user</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>htpasswd -c /etc/svn-passwd myusername
+</span><span class='line'>
+</span><span class='line'><span class="c">#Then enter your chosen password</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Initial Import</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>svn import -m <span class="s2">&quot;initial release&quot;</span> http://svn.domain.com/svn/reposname
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Standard Repository Layout</h3>
+
+<p>The first thing you should do is make the following directories:
+branches,tags,trunk</p>
+
+<p>branches - experimental releases / &#8220;spin off&#8217;s&#8221; of your initial project
+tags - copies of the trunk that are ready for a release
+trunk - latest project files (where you work from)</p>
+
+<p>you should check in/out your project from http://svn.mydomain.com/svn/myrepos/trunk</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-18T06:11:18+00:00" pubdate data-updated="true">Jan 18<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>Linux</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://elachys.github.com/blog/2009/01/18/installing-subversion/" data-via="" data-counturl="http://elachys.github.com/blog/2009/01/18/installing-subversion/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/01/18/default-apache-annoyance/" title="Next Post: Default Apache Annoyance">Default Apache Annoyance &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/11/16/canonical-tags-on-cms-pages/">Canonical tags on cms pages</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/18/setup-virtualhosts-under-mac-osx/">Setup virtualhosts under mac osx</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/10/update-language-file-per-template/">Update language file per template</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/21/set-page-title-tag-from-controller/">Set page title tag from controller</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/20/open-utf-8-csvs-in-excel/">Open UTF-8 CSV's in Excel</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

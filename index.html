@@ -1,1 +1,672 @@
-My Octopress Page is coming soon &hellip;
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="For product / category pages there is a config option for this in the magento admin. But for normal CMS pages you need to add the following to the &# &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://elachys.github.com">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:elachys.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/11/16/canonical-tags-on-cms-pages/">Canonical Tags on Cms Pages</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-16T10:39:53+00:00" pubdate data-updated="true">Nov 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For product / category pages there is a config option for this in the magento admin. But for normal CMS pages you need to add the following to the &#8220;design&#8221; tab on each page (obviously change the URL to the correct one)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;reference</span> <span class="na">name=</span><span class="s">&quot;head&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;action</span> <span class="na">method=</span><span class="s">&quot;addLinkRel&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;rel&gt;</span>canonical<span class="nt">&lt;/rel&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;href&gt;</span>http://www.somrandomdomainname.com/<span class="nt">&lt;/href&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/action&gt;</span>
+</span><span class='line'><span class="nt">&lt;/reference&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/18/setup-virtualhosts-under-mac-osx/">Setup Virtualhosts Under Mac Osx</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-18T12:38:13+01:00" pubdate data-updated="true">Oct 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Start apache with: <code>sudo httpd -k start</code></p>
+
+<p>The easiest way i&#8217;ve found to create virtual hosts is with this handy <a href="https://github.com/pgib/virtualhost.sh">virtualhost.sh script</a>.</p>
+
+<p>You can install it with the following</p>
+
+<p><code>cd ~
+git clone https://github.com/pgib/virtualhost.sh.git virtualhost
+PATH=$PATH\:~/virtualhost
+</code></p>
+
+<p>Then add each virtual host with:
+<code>sudo virtualhost.sh YOURVIRTUALHOSTNAME</code></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/10/update-language-file-per-template/">Update Language File Per Template</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-10T04:05:57+01:00" pubdate data-updated="true">Oct 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you wanted to change &#8220;Cart&#8221; to &#8220;Basket&#8221; on a multisite install but only make the change on one site. You can update the text on a per-template basis.</p>
+
+<p>Make the following file in your template:</p>
+
+<p>/app/design/frontend/<em>template</em>/default/locale/en_US/translate.csv</p>
+
+<p>File format as follows:</p>
+
+<p><code>"Cart","Basket"
+"Your Shopping Cart","Your Shopping Basket"
+"to cart","to basket"
+"You have no items in your shopping cart.","You have no items in your shopping basket."
+"Total in Cart:","Total in Basket:"
+"view cart","view basket"</code></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/21/set-page-title-tag-from-controller/">Set Page Title Tag From Controller</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-21T04:35:52+01:00" pubdate data-updated="true">Sep 21<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>$this-&gt;getLayout()-&gt;getBlock('head')-&gt;setTitle($this-&gt;__('My Account'));
+</code></pre>
+
+<p>eg:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="cp">&lt;?php</span>
+</span><span class='line'><span class="k">public</span> <span class="k">function</span> <span class="nf">indexAction</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadLayout</span><span class="p">();</span>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_initLayoutMessages</span><span class="p">(</span><span class="s1">&#39;customer/session&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getLayout</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getBlock</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">setTitle</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">__</span><span class="p">(</span><span class="s1">&#39;My Account&#39;</span><span class="p">));</span>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">renderLayout</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/20/open-utf-8-csvs-in-excel/">Open UTF-8 CSV&#8217;s in Excel</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-20T06:11:27+01:00" pubdate data-updated="true">Sep 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Excel requires a BOM at the beginning of the file. For UTF-8 it can be represented as:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\xef\xbb\xbf</span><span class="s2">&quot;</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">&lt;?php</span> <span class="nv">$fixedcsv</span> <span class="o">=</span><span class="err"> </span><span class="s2">&quot;</span><span class="se">\xef\xbb\xbf</span><span class="s2">&quot;</span> <span class="o">.</span> <span class="nv">$brokencsv</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/19/logged-in-only-pages/">Logged in Only Pages</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-19T10:20:26+01:00" pubdate data-updated="true">Sep 19<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Add the following code to your controller if you don&#8217;t want it to be accessible by users who aren&#8217;t logged in.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="cp">&lt;?php</span>
+</span><span class='line'><span class="k">public</span> <span class="k">function</span> <span class="nf">preDispatch</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">parent</span><span class="o">::</span><span class="na">preDispatch</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Mage</span><span class="o">::</span><span class="na">getSingleton</span><span class="p">(</span><span class="s1">&#39;customer/session&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">authenticate</span><span class="p">(</span><span class="nv">$this</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setFlag</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;no-dispatch&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/14/magento-view-cheatsheet/">View / Template Cheatsheet</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-14T11:28:43+01:00" pubdate data-updated="true">Sep 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Currencies and prices</h2>
+
+<p><code>&lt;?php echo Mage::helper('core')-&gt;currency($_product-&gt;getFinalPrice(),true,false); ?&gt;</code></p>
+
+<p>Price without currency symbol
+<code>&lt;?php echo Mage::getModel('directory/currency')-&gt;format($item-&gt;getData('price'), array('display'=&gt;Zend_Currency::NO_SYMBOL), false); ?&gt;</code></p>
+
+<h2>Current page url</h2>
+
+<p><code>echo $this-&gt;helper('core/url')-&gt;getCurrentUrl(); ?&gt;</code></p>
+
+<h2>Sanitize user data</h2>
+
+<p><code>&lt;?php echo $this-&gt;stripTags($_product-&gt;getName(), null, true); ?&gt;</code></p>
+
+<h2>Scaled, Resized image url</h2>
+
+<p><code>&lt;?php echo $this-&gt;helper('catalog/image')
+-&gt;init($_product, 'image')
+-&gt;constrainOnly(TRUE)
+-&gt;keepAspectRatio(TRUE)
+-&gt;keepFrame(FALSE)
+-&gt;resize(180,null); ?&gt;</code></p>
+
+<h2>Dates</h2>
+
+<p><code>&lt;?php echo $this-&gt;formatDate($order-&gt;getCreatedAt(),Mage_Core_Model_Locale::FORMAT_TYPE_FULL); ?&gt;</code>
+possible options include:
+<code>Mage_Core_Model_Locale::FORMAT_TYPE_FULL
+Mage_Core_Model_Locale::FORMAT_TYPE_LONG
+Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM
+Mage_Core_Model_Locale::FORMAT_TYPE_SHORT</code></p>
+
+<h2>Dynamically link to other controllers</h2>
+
+<p>This method of linking shouldn&#8217;t break when you update code in your controllers and can be used in any view.</p>
+
+<p><code>&lt;?php echo $this-&gt;getUrl('model/controller/action'); ?&gt;</code>
+for example
+<code>&lt;?php echo $this-&gt;getUrl('customer/account'); ?&gt;</code></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/14/get-magento-cms-contents/">Get Magento Cms Contents</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-14T10:53:29+01:00" pubdate data-updated="true">Sep 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>To display content from cms pages or static blocks in your view.</p>
+
+<h2>CMS Static blocks</h2>
+
+<p>getLayout()->createBlock(&#8216;cms/block&#8217;)->setBlockId(&#8216;MY-BLOCK-IDENTIFIER&#8217;)->toHtml(); ?></p>
+
+<h2>CMS page contents</h2>
+
+<p>$page = Mage::getModel(&#8216;cms/page&#8217;)->load(&#8216;MY-CMS-IDENTIFIER&#8217;, &#8216;identifier&#8217;)->getContent();</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/22/fetch-all-active-visible-categories-for-a-product/">Fetch All Active (Visible) Categories for a Product</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-22T05:51:49+01:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve seen people doing: <code>$category = $product-&gt;getCategoryCollection()-&gt;getFirstItem()-&gt;load();</code></p>
+
+<p>Which is fine, until someone hide categories, then some links randomly won&#8217;t work if the product is in multiple categories.</p>
+
+<p>The following will filter the category collection to only include active (not hidden) categories.</p>
+
+<p><code>$category = $product-&gt;getCategoryCollection()-&gt;addIsActiveFilter()-&gt;getFirstItem()-&gt;load();</code></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/22/magento-collection-iteration/">Magento Collection Iteration</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-22T06:49:41+01:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When you get a collection, most of the time you&#8217;ll just be able to do:
+<code>$products = Mage::getModel('catalog/product')-&gt;getCollection()
+-&gt;addAttributeToFilter('status',array('eq' =&gt; 1))
+-&gt;addAttributeToFilter('visibility',array('in' =&gt; array(2,4)))
+-&gt;setPage($i,PER_PAGE);
+foreach($products as $product){
+echo $product-&gt;getSku() . PHP_EOL;
+}
+</code></p>
+
+<p>However, if the collection is very large, you can actually run out of ram doing this. Instead, you should do the following:</p>
+
+<p><code>function productCallback($args)
+{
+echo $args['row']['sku'] . PHP_EOL;
+}
+$products = Mage::getModel('catalog/product')-&gt;getCollection()
+-&gt;addAttributeToFilter('status',array('eq' =&gt; 1))
+-&gt;addAttributeToFilter('visibility',array('in' =&gt; array(2,4)))
+-&gt;setPage($i,PER_PAGE);</code></p>
+
+<p>Mage::getSingleton(&#8216;core/resource_iterator&#8217;)->walk($products->getSelect(), array(&#8216;productCallback&#8217;), array(&#8216;res&#8217;=>$res));</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/11/16/canonical-tags-on-cms-pages/">Canonical tags on cms pages</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/18/setup-virtualhosts-under-mac-osx/">Setup virtualhosts under mac osx</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/10/update-language-file-per-template/">Update language file per template</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/21/set-page-title-tag-from-controller/">Set page title tag from controller</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/20/open-utf-8-csvs-in-excel/">Open UTF-8 CSV&#8217;s in Excel</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

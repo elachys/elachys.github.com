@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: SEO | My Octopress Blog]]></title>
+  <link href="http://elachys.github.com/blog/categories/seo/atom.xml" rel="self"/>
+  <link href="http://elachys.github.com/"/>
+  <updated>2013-01-25T10:18:59+00:00</updated>
+  <id>http://elachys.github.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[robots.txt]]></title>
+    <link href="http://elachys.github.com/blog/2011/03/30/robots-txt/"/>
+    <updated>2011-03-30T09:58:54+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/03/30/robots-txt</id>
+    <content type="html"><![CDATA[<p><code>User-agent: *</code>
+your staple first line. No reason to block things for specific search engines really...</p>
+
+<p>Example conditions:
+<code>Disallow: /*?options=cart$</code>
+<code>Disallow: /*?limit=all</code>
+<code>Disallow: /customer/</code></p>
+
+<p>Reference:
+<code>$ = ending delimiter</code>
+<code>* = any number of characters until the next character</code></p>
+
+<p>To block everything after a certain part of the URL, you don't include the ending delimiter. Eg. to block the entire checkout process:
+<code>Disallow: /checkout/</code></p>
+
+<p>To allow everything:
+<code>Allow: /</code></p>
+
+<p>To include your sitemap in your robots.txt:
+<code>Sitemap: http://www.mydomainname.com/sitemap.xml</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[DMOZ & Yahoo directory snippets]]></title>
+    <link href="http://elachys.github.com/blog/2011/03/08/dmoz-yahoo-directory-snippets/"/>
+    <updated>2011-03-08T09:27:03+00:00</updated>
+    <id>http://elachys.github.com/blog/2011/03/08/dmoz-yahoo-directory-snippets</id>
+    <content type="html"><![CDATA[<p>You can stop google, yahoo and msn search engines displaying dmoz and yahoo directory snippets for individual pages on your website by using the following meta tag in the heading of your pages.
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;robots&quot;</span> <span class="na">content=</span><span class="s">&quot;noydir, noodp&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New website? Easy links and getting indexed faster]]></title>
+    <link href="http://elachys.github.com/blog/2011/01/14/new-website-easy-links-and-getting-indexed-faster/"/>
+    <updated>2011-01-14T05:37:24+00:00</updated>
+    <id>http://elachys.github.com/blog/2011/01/14/new-website-easy-links-and-getting-indexed-faster</id>
+    <content type="html"><![CDATA[<h2>Search engine submission</h2>
+
+<p>Use the following to submit to all the major search engines:
+<a href="http://www.diggza.com/">http://www.diggza.com/</a></p>
+
+<p>I have no idea how much affect this has (if any). But there's no way it can harm anything, so why not?</p>
+
+<h2>Rubbish links</h2>
+
+<p>If you're skeptical about the first part, then skip it and move on to this. It definitely does work. Use the following services to submit your site. They create thousands of low quality links to your site. It probably won't be enough to push your site to number one but something is better than nothing.</p>
+
+<ul>
+<li><p><a href="http://www.imtalk.org/cmps_index.php?pageid=IMT-Website-Submitter">http://www.imtalk.org/cmps_index.php?pageid=IMT-Website-Submitter</a></p></li>
+<li><p><a href="http://verifiedfile.com/seo/">http://verifiedfile.com/seo/</a></p></li>
+<li><p><a href="http://www.websolhosting.com/free-instant-backlinks.php">http://www.websolhosting.com/free-instant-backlinks.php</a></p></li>
+<li><p><a href="http://backlinks.itamer.com/index.php">http://backlinks.itamer.com/index.php</a></p></li>
+<li><p><a href="http://seo.woothy.com/index.php">http://seo.woothy.com/index.php</a></p></li>
+<li><p><a href="http://www.freesitescripts.com/">http://www.freesitescripts.com/</a></p></li>
+<li><p><a href="http://www.totalping.com/">http://www.totalping.com/</a></p></li>
+</ul>
+
+
+<p>Sites are listed in order of how good they are. So if you get bored half way through, you've at least done the best ones.</p>
+
+<h2>Site maps</h2>
+
+<p>Make a sitemap, submit it everywhere! sign up for <a href="http://www.google.com/webmasters">google</a>, <a href="https://siteexplorer.search.yahoo.com/submit">yahoo</a> and <a href="http://www.bing.com/toolbox/webmasters/">Bing</a> webmaster tools and submit your sitemaps to those.</p>
+
+<p>If you're an e-commerce site, a <a href="http://google.com/merchants">google products feed</a> is a brilliant idea.</p>
+]]></content>
+  </entry>
+  
+</feed>

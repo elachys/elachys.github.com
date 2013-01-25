@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: typo3 | My Octopress Blog]]></title>
+  <link href="http://elachys.github.com/blog/categories/typo3/atom.xml" rel="self"/>
+  <link href="http://elachys.github.com/"/>
+  <updated>2013-01-25T10:18:59+00:00</updated>
+  <id>http://elachys.github.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Red exclamation / question mark buttons in typo3 admin]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/23/red-exclamation-mark-typo3-admin/"/>
+    <updated>2011-06-23T06:02:03+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/23/red-exclamation-mark-typo3-admin</id>
+    <content type="html"><![CDATA[<p>If you've just installed a new module and all your icons in the admin change to red buttons with white exclamation marks in, you simply need to set write permissions on your typo3temp folder.</p>
+
+<p>Just do:
+<code>sudo chmod -R 777 ./htdocs/typo3temp</code></p>
+
+<p>Or you might just be able to delete the contents of typo3temp...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[typo3 page bits]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/21/typo3-page-bits/"/>
+    <updated>2011-06-21T04:35:33+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/21/typo3-page-bits</id>
+    <content type="html"><![CDATA[<h2>Current page url</h2>
+
+<p><code>t3lib_div::getIndpEnv('TYPO3_REQUEST_URL')</code></p>
+
+<h2>Current page id in a module</h2>
+
+<p><code>echo $GLOBALS['TSFE']-&gt;page['uid'];</code></p>
+
+<h2>Typo3 link to any page (based on page id)</h2>
+
+<p><code>echo $GLOBALS['TSFE']-&gt;cObj-&gt;getTypoLink_URL(12345678);</code></p>
+
+<h2>Get Typoscript value in a module</h2>
+
+<h3>Typoscript</h3>
+
+<p><code>somethingtoaccess {
+aproperty = some value
+anotherproperty = bleh lah lah lah
+}
+somethingtoaccess.athirdproperty = falalalala
+</code></p>
+
+<h3>PHP</h3>
+
+<p><code>echo $GLOBALS['TSFE']-&gt;tmpl-&gt;setup['somethingtoaccess.']['aproperty'];</code></p>
+
+<h2>Get page properties from a uid</h2>
+
+<p>Note: the root page will have a pid (parent id) of 0
+<code>$pageSelect = t3lib_div::makeInstance('t3lib_pageSelect');
+$page = $pageSelect-&gt;getPage_noCheck($uid,false);
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Foreign table opposite field relationships in tca]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/14/foreign-table-opposite-field-relationships-in-tca/"/>
+    <updated>2011-06-14T06:28:02+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/14/foreign-table-opposite-field-relationships-in-tca</id>
+    <content type="html"><![CDATA[<p>I had a select box setup in my tca. But in the typo3 admin it always selected the first option.</p>
+
+<p>You can fix this with <code> 'MM_opposite_field' =&gt; 'oppositetable_id'</code></p>
+
+<p>This causes typo3 to look for it's currently select option in your foreign table.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[typo3 thumbnails]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/14/typo3-thumbnails/"/>
+    <updated>2011-06-14T04:32:30+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/14/typo3-thumbnails</id>
+    <content type="html"><![CDATA[<p>`$image = t3lib_BEfunc::getThumbNail('/typo3/thumbs.php', PATH_site . 'uploads/MYMODULENAME/holdingImage324x200.gif',</p>
+
+<pre><code>                                            '',300);`
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[typo3 sql debugging]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/09/typo3-sql-debugging/"/>
+    <updated>2011-06-09T10:49:21+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/09/typo3-sql-debugging</id>
+    <content type="html"><![CDATA[<p>Add the following to the bottom of your typo3conf/localconf.php file to get sent to a pretty looking error page when a sql error occurs.</p>
+
+<p>`</p>
+
+<p>$TYPO3_CONF_VARS['SYS']['displayErrors'] = '1';
+$TYPO3_CONF_VARS['SYS']['devIPmask'] = '*';
+$TYPO3_CONF_VARS['SYS']['errorHandler'] = 't3lib_error_ErrorHandler';
+$TYPO3_CONF_VARS['SYS']['errorHandlerErrors'] = E_ALL ^ E_NOTICE;
+$TYPO3_CONF_VARS['SYS']['exceptionalErrors'] = E_ALL ^ E_NOTICE ^ E_WARNING ^ E_USER_ERROR ^ E_USER_NOTICE ^ E_USER_WARNING;
+$TYPO3_CONF_VARS['SYS']['debugExceptionHandler'] = 't3lib_error_DebugExceptionHandler';
+$TYPO3_CONF_VARS['SYS']['productionExceptionHandler'] = 't3lib_error_DebugExceptionHandler';
+$TYPO3_CONF_VARS['SYS']['systemLogLevel'] = '0';
+$TYPO3_CONF_VARS['SYS']['systemLog'] = 'mail,YOUR@EMAILHERE.COM,4;error_log,,2;syslog,LOCAL0,,3;file,/var/www/vhosts/SITEURL/logs/typo3error.log';
+$TYPO3_CONF_VARS['SYS']['enable_errorDLOG'] = '1';
+$TYPO3_CONF_VARS['SYS']['enable_exceptionDLOG'] = '1';
+$TYPO3_CONF_VARS['SYS']['curlUse'] = '1';
+$TYPO3_CONF_VARS['SYS']['devIPmask'] = '127.0.0.1,::1,YOUR_IP_HERE';
+$TYPO3_CONF_VARS['SYS']['sqlDebug'] = '1';
+$TYPO3_CONF_VARS['SYS']['enable_DLOG'] = true;
+$TYPO3_CONF_VARS['SYS']['enable_errorDLOG'] = '1';
+$TYPO3_CONF_VARS['SYS']['enable_exceptionDLOG'] = '1';</p>
+
+<p>$TYPO3_CONF_VARS['SYS']['useCachingFramework'] = '1';</p>
+
+<p>$TYPO3_CONF_VARS['FE']['debug'] = '1';
+`</p>
+]]></content>
+  </entry>
+  
+</feed>

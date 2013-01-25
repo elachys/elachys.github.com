@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Improve Magento Performance - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Quick &amp; Easy Wins Install Fooman Speedster
+Enable Gzip Compression in .htaccess
+HTTP KeepAlives enabled
+Disable open_basedir Mysql Settings my.cf &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://elachys.github.com/blog/2011/04/21/improve-magento-performance">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:elachys.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Improve Magento Performance</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-21T03:24:15+01:00" pubdate data-updated="true">Apr 21<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Quick &amp; Easy Wins</h2>
+
+<ul>
+<li><p>Install Fooman Speedster</p></li>
+<li><p>Enable Gzip Compression in .htaccess</p></li>
+<li><p>HTTP KeepAlives enabled</p></li>
+<li><p>Disable open_basedir</p></li>
+</ul>
+
+
+<h2>Mysql Settings</h2>
+
+<p>my.cf should contain something like:
+<code>key-buffer = 512M
+max-allowed_packet = 64M
+table-cache = 512
+sort-buffer-size = 4M
+read-buffer-size = 4M
+read-rnd-buffer-size = 2M
+myisam-sort-buffer-size 64M
+tmp-table-size = 128M
+thread-cache-size = 8
+max-connections = 400
+wait-timeout = 1800
+connect_timeout = 120</code></p>
+
+<h2>APC Caching</h2>
+
+<p>Turn off the magento compiler module when using apc.stat=0
+<code>apc.stat = 0
+apc.shm_size = 512</code>
+Modify app/etc/local.xml. Place the following just inside the <global> tag:
+<code>&lt;cache&gt;
+&lt;backend&gt;apc&lt;/backend&gt;
+&lt;prefix&gt;alphanumeric&lt;/prefix&gt;
+&lt;/cache&gt;</code></p>
+
+<h2>Memory FS</h2>
+
+<p>For when you have ram to burn. Dump the sessions and cache in ram (presuming you&#8217;re using file based sessions).
+<code>mount -t tmpfs -o size=256M,mode=0777 tmpfs /var/www/vhosts/yourmagentostore.com/httpdocs/var/cache
+mount -t tmpfs -o size=64M,mode=0777 tmpfs /var/www/vhosts/yourmagentostore.com/httpdocs/var/session/</code></p>
+
+<h2>Database Sessions</h2>
+
+<p>Add the following to your app/etc/local.xml after </resources> (inside <global> )
+<code>&lt;session_save&gt;&lt;![CDATA[db]]&gt;&lt;/session_save&gt;</code></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-21T03:24:15+01:00" pubdate data-updated="true">Apr 21<span>st</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/php/'>PHP</a>, <a class='category' href='/blog/categories/magento/'>magento</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://elachys.github.com/blog/2011/04/21/improve-magento-performance/" data-via="" data-counturl="http://elachys.github.com/blog/2011/04/21/improve-magento-performance/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/04/20/siege/" title="Previous Post: Siege">&laquo; Siege</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/04/27/fputcsv-outpu/" title="Next Post: fputcsv to something other than a file">fputcsv to something other than a file &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/11/16/canonical-tags-on-cms-pages/">Canonical tags on cms pages</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/18/setup-virtualhosts-under-mac-osx/">Setup virtualhosts under mac osx</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/10/update-language-file-per-template/">Update language file per template</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/21/set-page-title-tag-from-controller/">Set page title tag from controller</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/20/open-utf-8-csvs-in-excel/">Open UTF-8 CSV's in Excel</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

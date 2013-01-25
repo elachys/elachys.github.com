@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Javascript | My Octopress Blog]]></title>
+  <link href="http://elachys.github.com/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://elachys.github.com/"/>
+  <updated>2013-01-25T10:18:59+00:00</updated>
+  <id>http://elachys.github.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Tiny MCE Vimeo plugin]]></title>
+    <link href="http://elachys.github.com/blog/2010/08/11/tiny-mce-vimeo-plugin/"/>
+    <updated>2010-08-11T11:29:09+01:00</updated>
+    <id>http://elachys.github.com/blog/2010/08/11/tiny-mce-vimeo-plugin</id>
+    <content type="html"><![CDATA[<p>vimeo video plugin for tinyMCE.</p>
+
+<p><a href="http://www.reallyreallyreallylong.com/vimeo.zip">download the zip here</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Asynchronous javascript loading]]></title>
+    <link href="http://elachys.github.com/blog/2010/05/27/asynchronous-javascript-loading/"/>
+    <updated>2010-05-27T10:58:36+01:00</updated>
+    <id>http://elachys.github.com/blog/2010/05/27/asynchronous-javascript-loading</id>
+    <content type="html"><![CDATA[<p>Using the same idea as google analytic's new code.</p>
+
+<p>here's an example of swf object:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">sw</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span> <span class="nx">sw</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span> <span class="nx">sw</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'><span class="nx">sw</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;http://ajax.googleapis.com/ajax/libs/swfobject/2/swfobject.js&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span> <span class="nx">s</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">sw</span><span class="p">,</span> <span class="nx">s</span><span class="p">);</span>
+</span><span class='line'><span class="p">})();</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Using this instead of a standard script tag seriously decreases load time.</p>
+]]></content>
+  </entry>
+  
+</feed>

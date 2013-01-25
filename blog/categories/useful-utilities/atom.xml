@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Useful Utilities | My Octopress Blog]]></title>
+  <link href="http://elachys.github.com/blog/categories/useful-utilities/atom.xml" rel="self"/>
+  <link href="http://elachys.github.com/"/>
+  <updated>2013-01-25T10:18:59+00:00</updated>
+  <id>http://elachys.github.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Setup virtualhosts under mac osx]]></title>
+    <link href="http://elachys.github.com/blog/2011/10/18/setup-virtualhosts-under-mac-osx/"/>
+    <updated>2011-10-18T12:38:13+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/10/18/setup-virtualhosts-under-mac-osx</id>
+    <content type="html"><![CDATA[<p>Start apache with: <code>sudo httpd -k start</code></p>
+
+<p>The easiest way i've found to create virtual hosts is with this handy <a href="https://github.com/pgib/virtualhost.sh">virtualhost.sh script</a>.</p>
+
+<p>You can install it with the following</p>
+
+<p><code>cd ~
+git clone https://github.com/pgib/virtualhost.sh.git virtualhost
+PATH=$PATH\:~/virtualhost
+</code></p>
+
+<p>Then add each virtual host with:
+<code>sudo virtualhost.sh YOURVIRTUALHOSTNAME</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New website? Easy links and getting indexed faster]]></title>
+    <link href="http://elachys.github.com/blog/2011/01/14/new-website-easy-links-and-getting-indexed-faster/"/>
+    <updated>2011-01-14T05:37:24+00:00</updated>
+    <id>http://elachys.github.com/blog/2011/01/14/new-website-easy-links-and-getting-indexed-faster</id>
+    <content type="html"><![CDATA[<h2>Search engine submission</h2>
+
+<p>Use the following to submit to all the major search engines:
+<a href="http://www.diggza.com/">http://www.diggza.com/</a></p>
+
+<p>I have no idea how much affect this has (if any). But there's no way it can harm anything, so why not?</p>
+
+<h2>Rubbish links</h2>
+
+<p>If you're skeptical about the first part, then skip it and move on to this. It definitely does work. Use the following services to submit your site. They create thousands of low quality links to your site. It probably won't be enough to push your site to number one but something is better than nothing.</p>
+
+<ul>
+<li><p><a href="http://www.imtalk.org/cmps_index.php?pageid=IMT-Website-Submitter">http://www.imtalk.org/cmps_index.php?pageid=IMT-Website-Submitter</a></p></li>
+<li><p><a href="http://verifiedfile.com/seo/">http://verifiedfile.com/seo/</a></p></li>
+<li><p><a href="http://www.websolhosting.com/free-instant-backlinks.php">http://www.websolhosting.com/free-instant-backlinks.php</a></p></li>
+<li><p><a href="http://backlinks.itamer.com/index.php">http://backlinks.itamer.com/index.php</a></p></li>
+<li><p><a href="http://seo.woothy.com/index.php">http://seo.woothy.com/index.php</a></p></li>
+<li><p><a href="http://www.freesitescripts.com/">http://www.freesitescripts.com/</a></p></li>
+<li><p><a href="http://www.totalping.com/">http://www.totalping.com/</a></p></li>
+</ul>
+
+
+<p>Sites are listed in order of how good they are. So if you get bored half way through, you've at least done the best ones.</p>
+
+<h2>Site maps</h2>
+
+<p>Make a sitemap, submit it everywhere! sign up for <a href="http://www.google.com/webmasters">google</a>, <a href="https://siteexplorer.search.yahoo.com/submit">yahoo</a> and <a href="http://www.bing.com/toolbox/webmasters/">Bing</a> webmaster tools and submit your sitemaps to those.</p>
+
+<p>If you're an e-commerce site, a <a href="http://google.com/merchants">google products feed</a> is a brilliant idea.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[read ext3 on windows]]></title>
+    <link href="http://elachys.github.com/blog/2010/08/18/read-ext3-on-windows/"/>
+    <updated>2010-08-18T11:17:07+01:00</updated>
+    <id>http://elachys.github.com/blog/2010/08/18/read-ext3-on-windows</id>
+    <content type="html"><![CDATA[<p>use
+http://www.chrysocome.net/virtualvolumes</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Copying lots of files?]]></title>
+    <link href="http://elachys.github.com/blog/2010/08/13/copying-lots-of-files/"/>
+    <updated>2010-08-13T10:13:29+01:00</updated>
+    <id>http://elachys.github.com/blog/2010/08/13/copying-lots-of-files</id>
+    <content type="html"><![CDATA[<p>Tera copy works even over networks. It's faster and far more reliable than windows SMB / Samba transfers...</p>
+
+<p><a href="http://www.codesector.com/teracopy.php">http://www.codesector.com/teracopy.php</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[progressive imageMagick]]></title>
+    <link href="http://elachys.github.com/blog/2010/07/13/progressive-imagemagick/"/>
+    <updated>2010-07-13T11:17:42+01:00</updated>
+    <id>http://elachys.github.com/blog/2010/07/13/progressive-imagemagick</id>
+    <content type="html"><![CDATA[<p>Make your output jpeg's progressive with the following:</p>
+
+<pre><code>convert source.jpg -interlace destination.jpg
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

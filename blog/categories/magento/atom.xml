@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: magento | My Octopress Blog]]></title>
+  <link href="http://elachys.github.com/blog/categories/magento/atom.xml" rel="self"/>
+  <link href="http://elachys.github.com/"/>
+  <updated>2013-01-25T10:18:59+00:00</updated>
+  <id>http://elachys.github.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Canonical tags on cms pages]]></title>
+    <link href="http://elachys.github.com/blog/2011/11/16/canonical-tags-on-cms-pages/"/>
+    <updated>2011-11-16T10:39:53+00:00</updated>
+    <id>http://elachys.github.com/blog/2011/11/16/canonical-tags-on-cms-pages</id>
+    <content type="html"><![CDATA[<p>For product / category pages there is a config option for this in the magento admin. But for normal CMS pages you need to add the following to the "design" tab on each page (obviously change the URL to the correct one)</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;reference</span> <span class="na">name=</span><span class="s">&quot;head&quot;</span><span class="nt">&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>action method=&quot;addLinkRel&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>rel<span class="ni">&amp;gt;</span>canonical<span class="ni">&amp;lt;</span>/rel<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>href<span class="ni">&amp;gt;</span>http://www.somrandomdomainname.com/<span class="ni">&amp;lt;</span>/href<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/action<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;&lt;/reference&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Update language file per template]]></title>
+    <link href="http://elachys.github.com/blog/2011/10/10/update-language-file-per-template/"/>
+    <updated>2011-10-10T04:05:57+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/10/10/update-language-file-per-template</id>
+    <content type="html"><![CDATA[<p>If you wanted to change "Cart" to "Basket" on a multisite install but only make the change on one site. You can update the text on a per-template basis.</p>
+
+<p>Make the following file in your template:</p>
+
+<p>/app/design/frontend/<em>template</em>/default/locale/en_US/translate.csv</p>
+
+<p>File format as follows:</p>
+
+<p><code>"Cart","Basket"
+"Your Shopping Cart","Your Shopping Basket"
+"to cart","to basket"
+"You have no items in your shopping cart.","You have no items in your shopping basket."
+"Total in Cart:","Total in Basket:"
+"view cart","view basket"</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Set page title tag from controller]]></title>
+    <link href="http://elachys.github.com/blog/2011/09/21/set-page-title-tag-from-controller/"/>
+    <updated>2011-09-21T04:35:52+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/09/21/set-page-title-tag-from-controller</id>
+    <content type="html"><![CDATA[<pre><code>$this-&gt;getLayout()-&gt;getBlock('head')-&gt;setTitle($this-&gt;__('My Account'));
+</code></pre>
+
+<p>eg:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="x">&amp;lt;?php</span>
+</span><span class='line'><span class="x">public function indexAction(){&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="x">&lt;pre&gt;&lt;code&gt;$this-&amp;gt;loadLayout();</span>
+</span><span class='line'><span class="x">$this-&amp;gt;_initLayoutMessages(&#39;customer/session&#39;);</span>
+</span><span class='line'><span class="x">$this-&amp;gt;getLayout()-&amp;gt;getBlock(&#39;head&#39;)-&amp;gt;setTitle($this-&amp;gt;__(&#39;My Account&#39;));</span>
+</span><span class='line'><span class="x">$this-&amp;gt;renderLayout();</span>
+</span><span class='line'><span class="x">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="x">&lt;p&gt;}</span>
+</span><span class='line'><span class="x">?&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Logged in only pages]]></title>
+    <link href="http://elachys.github.com/blog/2011/09/19/logged-in-only-pages/"/>
+    <updated>2011-09-19T10:20:26+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/09/19/logged-in-only-pages</id>
+    <content type="html"><![CDATA[<p>Add the following code to your controller if you don't want it to be accessible by users who aren't logged in.
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="x">&amp;lt;?php</span>
+</span><span class='line'><span class="x">public function preDispatch() {&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="x">&lt;pre&gt;&lt;code&gt;parent::preDispatch();</span>
+</span><span class='line'>
+</span><span class='line'><span class="x">if (!Mage::getSingleton(&#39;customer/session&#39;)-&amp;gt;authenticate($this)) {</span>
+</span><span class='line'><span class="x">    $this-&amp;gt;setFlag(&#39;&#39;, &#39;no-dispatch&#39;, true);</span>
+</span><span class='line'><span class="x">}</span>
+</span><span class='line'><span class="x">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="x">&lt;p&gt;}</span>
+</span><span class='line'><span class="x">?&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[View / Template Cheatsheet]]></title>
+    <link href="http://elachys.github.com/blog/2011/09/14/magento-view-cheatsheet/"/>
+    <updated>2011-09-14T11:28:43+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/09/14/magento-view-cheatsheet</id>
+    <content type="html"><![CDATA[<h2>Currencies and prices</h2>
+
+<p><code>&lt;?php echo Mage::helper('core')-&gt;currency($_product-&gt;getFinalPrice(),true,false); ?&gt;</code></p>
+
+<p>Price without currency symbol
+<code>&lt;?php echo Mage::getModel('directory/currency')-&gt;format($item-&gt;getData('price'), array('display'=&gt;Zend_Currency::NO_SYMBOL), false); ?&gt;</code></p>
+
+<h2>Current page url</h2>
+
+<p><code>echo $this-&gt;helper('core/url')-&gt;getCurrentUrl(); ?&gt;</code></p>
+
+<h2>Sanitize user data</h2>
+
+<p><code>&lt;?php echo $this-&gt;stripTags($_product-&gt;getName(), null, true); ?&gt;</code></p>
+
+<h2>Scaled, Resized image url</h2>
+
+<p><code>&lt;?php echo $this-&gt;helper('catalog/image')
+-&gt;init($_product, 'image')
+-&gt;constrainOnly(TRUE)
+-&gt;keepAspectRatio(TRUE)
+-&gt;keepFrame(FALSE)
+-&gt;resize(180,null); ?&gt;</code></p>
+
+<h2>Dates</h2>
+
+<p><code>&lt;?php echo $this-&gt;formatDate($order-&gt;getCreatedAt(),Mage_Core_Model_Locale::FORMAT_TYPE_FULL); ?&gt;</code>
+possible options include:
+<code>Mage_Core_Model_Locale::FORMAT_TYPE_FULL
+Mage_Core_Model_Locale::FORMAT_TYPE_LONG
+Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM
+Mage_Core_Model_Locale::FORMAT_TYPE_SHORT</code></p>
+
+<h2>Dynamically link to other controllers</h2>
+
+<p>This method of linking shouldn't break when you update code in your controllers and can be used in any view.</p>
+
+<p><code>&lt;?php echo $this-&gt;getUrl('model/controller/action'); ?&gt;</code>
+for example
+<code>&lt;?php echo $this-&gt;getUrl('customer/account'); ?&gt;</code></p>
+]]></content>
+  </entry>
+  
+</feed>

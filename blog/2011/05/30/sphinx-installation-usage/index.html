@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Install, index and test Sphinx (search engine) - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Installation download and extract the source:
+wget http://sphinxsearch.com/files/sphinx-2.0.1-beta.tar.gz
+tar xvzf sphinx-2.0.1-beta.tar.gz Try and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://elachys.github.com/blog/2011/05/30/sphinx-installation-usage">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:elachys.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Install, Index and Test Sphinx (Search Engine)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-30T13:26:19+01:00" pubdate data-updated="true">May 30<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Installation</h2>
+
+<p>download and extract the source:
+<code>wget http://sphinxsearch.com/files/sphinx-2.0.1-beta.tar.gz
+tar xvzf sphinx-2.0.1-beta.tar.gz
+</code></p>
+
+<p>Try and configure it (prefix is the path to install sphinx to)
+<code>./configure --prefix=/usr/local/sphinx</code>
+It will most likely error. In my case, i had to install the mysql-devel package, fix the problems and re-run configure until it works.</p>
+
+<p><code>make</code>
+At this point, i got the error:
+<code>... line 512: exec: g++: not found</code>
+I took this to mean i didn&#8217;t have g++ installed&#8230;
+<code>yum install gcc gcc-c++ make</code>
+Then install
+<code>make install</code></p>
+
+<h2>Configuration</h2>
+
+<p>If you&#8217;ve installed to the same location as me, make the config file in:
+<code>/usr/local/sphinx/etc/sphinx.conf</code>
+I like to use the following config file here. It gives me all the basic options for all sites on the server, but also allows me to drop a per-site config file into the folder that will also be included.
+`</p>
+
+<h1>!/bin/bash`</h1>
+
+<p><code>cat &lt;&lt;-EOL
+indexer
+{
+mem_limit = 32M
+}</code></p>
+
+<p>`searchd
+{</p>
+
+<h1>IP address to bind on</h1>
+
+<h1>optional, default is 0.0.0.0 (ie. listen on all interfaces)</h1>
+
+<p>#</p>
+
+<h1>address                               = 127.0.0.1</h1>
+
+<h1>address                               = 192.168.0.1</h1>
+
+<h1>searchd TCP port number</h1>
+
+<h1>mandatory, default is 3312</h1>
+
+<p>port                            = 3312</p>
+
+<h1>log file, searchd run info is logged here</h1>
+
+<h1>optional, default is &#8216;searchd.log&#8217;</h1>
+
+<p>log                                     = /var/log/sphinx/searchd.log</p>
+
+<h1>query log file, all search queries are logged here</h1>
+
+<h1>optional, default is empty (do not log queries)</h1>
+
+<p>query_log                       = /var/log/sphinx/query.log</p>
+
+<h1>client read timeout, seconds</h1>
+
+<h1>optional, default is 5</h1>
+
+<p>read_timeout            = 5</p>
+
+<h1>maximum amount of children to fork (concurrent searches to run)</h1>
+
+<h1>optional, default is 0 (unlimited)</h1>
+
+<p>max_children            = 30</p>
+
+<h1>PID file, searchd process ID file name</h1>
+
+<h1>mandatory</h1>
+
+<p>pid_file                        = /var/log/sphinx/searchd.pid</p>
+
+<h1>max amount of matches the daemon ever keeps in RAM, per-index</h1>
+
+<h1>WARNING, THERE&#8217;S ALSO PER-QUERY LIMIT, SEE SetLimits() API CALL</h1>
+
+<h1>default is 1000 (just like Google)</h1>
+
+<p>max_matches                     = 100000</p>
+
+<h1>seamless rotate, prevents rotate stalls if precaching huge datasets</h1>
+
+<h1>optional, default is 1</h1>
+
+<p>seamless_rotate         = 1</p>
+
+<h1>whether to forcibly preopen all indexes on startup</h1>
+
+<h1>optional, default is 0 (do not preopen)</h1>
+
+<p>preopen_indexes         = 0</p>
+
+<h1>whether to unlink .old index copies on succesful rotation.</h1>
+
+<h1>optional, default is 1 (do unlink)</h1>
+
+<p>unlink_old                      = 1
+workers = threads
+}
+EOL</p>
+
+<p>find . -name &#8216;*.include&#8217; -exec bash {} \;`</p>
+
+<p>In this example config, we&#8217;ll be reading from a MySQL database . Note: sphinx also supports Postgres. Our catalog is called catalog :-) you should name it something different for each different &#8220;thing&#8221; you&#8217;ll be indexing.
+`</p>
+
+<h1>!/bin/bash</h1>
+
+<p>cat &lt;&lt;-EOL
+source catalog
+{
+type = mysql</p>
+
+<p>sql_host = localhost
+sql_user = dbuser
+sql_pass = dbpassword
+sql_db = dbtablename
+sql_sock = /var/lib/mysql/mysql.sock
+sql_port = 3306</p>
+
+<h1>indexer query</h1>
+
+<h1>document_id MUST be the very first field</h1>
+
+<h1>document_id MUST be positive (non-zero, non-negative)</h1>
+
+<h1>document_id MUST fit into 32 bits</h1>
+
+<h1>document_id MUST be unique</h1>
+
+<p>sql_query = SELECT id,field1 FROM tablename;</p>
+
+<h1>sql_group_column = query</h1>
+
+<h1>document info query</h1>
+
+<h1>ONLY used by search utility to display document information</h1>
+
+<h1>MUST be able to fetch document info by its id, therefore</h1>
+
+<h1>MUST contain &#8216;$id&#8217; macro</h1>
+
+<p>#
+sql_query_info = SELECT * FROM tablename WHERE id=\$id</p>
+
+<p>}</p>
+
+<p>index catalog
+{
+source = catalog
+path = /var/data/sphinx/catalog
+morphology = stem_en</p>
+
+<h1>min_word_len = 3</h1>
+
+<h1>min_prefix_len = 0</h1>
+
+<h1>min_infix_len = 3</h1>
+
+<p>}</p>
+
+<p>EOL
+`</p>
+
+<h2>Indexing &amp; Testing</h2>
+
+<p>Move to your config directory
+<code>cd /usr/local/sphinx/etc</code></p>
+
+<p>Once everything is setup, you&#8217;ll need to do an index of your data. Usually, the following command will do this:
+<code>sudo /usr/local/sphinx/bin/indexer --all</code>
+ You can then use the following to test (where your search term is &#8220;travel&#8221;)
+<code>/usr/local/sphinx/bin/search travel</code></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-30T13:26:19+01:00" pubdate data-updated="true">May 30<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/mysql/'>MySQL</a>, <a class='category' href='/blog/categories/php/'>PHP</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://elachys.github.com/blog/2011/05/30/sphinx-installation-usage/" data-via="" data-counturl="http://elachys.github.com/blog/2011/05/30/sphinx-installation-usage/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/05/27/structure-adwords-account/" title="Previous Post: Campaigns, Ad groups and Keywords">&laquo; Campaigns, Ad groups and Keywords</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/06/03/tabs-in-modules/" title="Next Post: Tabs in Modules">Tabs in Modules &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/11/16/canonical-tags-on-cms-pages/">Canonical tags on cms pages</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/18/setup-virtualhosts-under-mac-osx/">Setup virtualhosts under mac osx</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/10/update-language-file-per-template/">Update language file per template</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/21/set-page-title-tag-from-controller/">Set page title tag from controller</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/20/open-utf-8-csvs-in-excel/">Open UTF-8 CSV's in Excel</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

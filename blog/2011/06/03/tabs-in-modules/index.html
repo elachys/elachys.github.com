@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Tabs in Modules - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="open:
+./typo3conf/ext/YOUREXTENSION/ext_tables.php
+You need to add 'dividers2tabs' =&gt; TRUE
+To show in context:
+`
+$TCA[&#8220;tx_3evmedia_general&# &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://elachys.github.com/blog/2011/06/03/tabs-in-modules">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:elachys.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Tabs in Modules</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-03T05:03:16+01:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>open:
+<code>./typo3conf/ext/YOUREXTENSION/ext_tables.php</code>
+You need to add <code>'dividers2tabs' =&gt; TRUE</code>
+To show in context:
+`
+$TCA[&#8220;tx_3evmedia_general&#8221;] = Array (</p>
+
+<pre><code>"ctrl" =&gt; Array (
+    'title' =&gt; 'LLL:EXT:3ev_media/locallang_db.xml:tx_3evmedia_general',        
+    'label' =&gt; 'title', 
+    'tstamp' =&gt; 'tstamp',
+    'crdate' =&gt; 'crdate',
+    'cruser_id' =&gt; 'cruser_id',
+    "sortby" =&gt; "sorting",  
+    "delete" =&gt; "deleted",
+    "enablecolumns" =&gt; Array (      
+        "disabled" =&gt; "hidden", 
+        "starttime" =&gt; "starttime", 
+        "endtime" =&gt; "endtime", 
+        "fe_group" =&gt; "fe_group",
+    ),
+    "dynamicConfigFile" =&gt; t3lib_extMgm::extPath($_EXTKEY)."tca.php",
+    "iconfile" =&gt; t3lib_extMgm::extRelPath($_EXTKEY)."icon_tx_3evmedia_general.gif",
+    'dividers2tabs' =&gt; TRUE,    
+),
+"feInterface" =&gt; Array (
+    "fe_admin_fieldList" =&gt; "hidden, starttime, endtime, fe_group, category, title, description, image, yotube_id, attachment, attachment_logged_in, publish_date",
+)
+</code></pre>
+
+<p>);
+`</p>
+
+<p>You then need to set your tabs in tca.php &#8211;div&#8211;; starts a new tab. In this example, the two tabs are called &#8220;General&#8221; and &#8220;Poll&#8221;
+`</p>
+
+<pre><code>"types" =&gt; Array (
+    "0" =&gt; Array("showitem" =&gt; "--div--;General,hidden;;1;;1-1-1, category, title;;;;2-2-2, description;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[mode=ts];3-3-3, image, yotube_id, attachment, attachment_logged_in, publish_date,
+                              --div--;Poll,image")
+),
+</code></pre>
+
+<p>`</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-03T05:03:16+01:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/typo3/'>typo3</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://elachys.github.com/blog/2011/06/03/tabs-in-modules/" data-via="" data-counturl="http://elachys.github.com/blog/2011/06/03/tabs-in-modules/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/05/30/sphinx-installation-usage/" title="Previous Post: Install, index and test Sphinx (search engine)">&laquo; Install, index and test Sphinx (search engine)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/06/09/typo3-sql-debugging/" title="Next Post: typo3 sql debugging">typo3 sql debugging &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/11/16/canonical-tags-on-cms-pages/">Canonical tags on cms pages</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/18/setup-virtualhosts-under-mac-osx/">Setup virtualhosts under mac osx</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/10/update-language-file-per-template/">Update language file per template</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/21/set-page-title-tag-from-controller/">Set page title tag from controller</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/20/open-utf-8-csvs-in-excel/">Open UTF-8 CSV's in Excel</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

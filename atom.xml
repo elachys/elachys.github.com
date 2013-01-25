@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Octopress Blog]]></title>
+  <link href="http://elachys.github.com/atom.xml" rel="self"/>
+  <link href="http://elachys.github.com/"/>
+  <updated>2013-01-25T10:18:59+00:00</updated>
+  <id>http://elachys.github.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Canonical tags on cms pages]]></title>
+    <link href="http://elachys.github.com/blog/2011/11/16/canonical-tags-on-cms-pages/"/>
+    <updated>2011-11-16T10:39:53+00:00</updated>
+    <id>http://elachys.github.com/blog/2011/11/16/canonical-tags-on-cms-pages</id>
+    <content type="html"><![CDATA[<p>For product / category pages there is a config option for this in the magento admin. But for normal CMS pages you need to add the following to the &#8220;design&#8221; tab on each page (obviously change the URL to the correct one)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;reference</span> <span class="na">name=</span><span class="s">&quot;head&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;action</span> <span class="na">method=</span><span class="s">&quot;addLinkRel&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;rel&gt;</span>canonical<span class="nt">&lt;/rel&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;href&gt;</span>http://www.somrandomdomainname.com/<span class="nt">&lt;/href&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/action&gt;</span>
+</span><span class='line'><span class="nt">&lt;/reference&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Setup virtualhosts under mac osx]]></title>
+    <link href="http://elachys.github.com/blog/2011/10/18/setup-virtualhosts-under-mac-osx/"/>
+    <updated>2011-10-18T12:38:13+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/10/18/setup-virtualhosts-under-mac-osx</id>
+    <content type="html"><![CDATA[<p>Start apache with: <code>sudo httpd -k start</code></p>
+
+<p>The easiest way i&#8217;ve found to create virtual hosts is with this handy <a href="https://github.com/pgib/virtualhost.sh">virtualhost.sh script</a>.</p>
+
+<p>You can install it with the following</p>
+
+<p><code>cd ~
+git clone https://github.com/pgib/virtualhost.sh.git virtualhost
+PATH=$PATH\:~/virtualhost
+</code></p>
+
+<p>Then add each virtual host with:
+<code>sudo virtualhost.sh YOURVIRTUALHOSTNAME</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Update language file per template]]></title>
+    <link href="http://elachys.github.com/blog/2011/10/10/update-language-file-per-template/"/>
+    <updated>2011-10-10T04:05:57+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/10/10/update-language-file-per-template</id>
+    <content type="html"><![CDATA[<p>If you wanted to change &#8220;Cart&#8221; to &#8220;Basket&#8221; on a multisite install but only make the change on one site. You can update the text on a per-template basis.</p>
+
+<p>Make the following file in your template:</p>
+
+<p>/app/design/frontend/<em>template</em>/default/locale/en_US/translate.csv</p>
+
+<p>File format as follows:</p>
+
+<p><code>"Cart","Basket"
+"Your Shopping Cart","Your Shopping Basket"
+"to cart","to basket"
+"You have no items in your shopping cart.","You have no items in your shopping basket."
+"Total in Cart:","Total in Basket:"
+"view cart","view basket"</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Set page title tag from controller]]></title>
+    <link href="http://elachys.github.com/blog/2011/09/21/set-page-title-tag-from-controller/"/>
+    <updated>2011-09-21T04:35:52+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/09/21/set-page-title-tag-from-controller</id>
+    <content type="html"><![CDATA[<pre><code>$this-&gt;getLayout()-&gt;getBlock('head')-&gt;setTitle($this-&gt;__('My Account'));
+</code></pre>
+
+<p>eg:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="cp">&lt;?php</span>
+</span><span class='line'><span class="k">public</span> <span class="k">function</span> <span class="nf">indexAction</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadLayout</span><span class="p">();</span>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_initLayoutMessages</span><span class="p">(</span><span class="s1">&#39;customer/session&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getLayout</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getBlock</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">setTitle</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">__</span><span class="p">(</span><span class="s1">&#39;My Account&#39;</span><span class="p">));</span>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">renderLayout</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Open UTF-8 CSV's in Excel]]></title>
+    <link href="http://elachys.github.com/blog/2011/09/20/open-utf-8-csvs-in-excel/"/>
+    <updated>2011-09-20T06:11:27+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/09/20/open-utf-8-csvs-in-excel</id>
+    <content type="html"><![CDATA[<p>Excel requires a BOM at the beginning of the file. For UTF-8 it can be represented as:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\xef\xbb\xbf</span><span class="s2">&quot;</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">&lt;?php</span> <span class="nv">$fixedcsv</span> <span class="o">=</span><span class="err"> </span><span class="s2">&quot;</span><span class="se">\xef\xbb\xbf</span><span class="s2">&quot;</span> <span class="o">.</span> <span class="nv">$brokencsv</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Logged in only pages]]></title>
+    <link href="http://elachys.github.com/blog/2011/09/19/logged-in-only-pages/"/>
+    <updated>2011-09-19T10:20:26+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/09/19/logged-in-only-pages</id>
+    <content type="html"><![CDATA[<p>Add the following code to your controller if you don&#8217;t want it to be accessible by users who aren&#8217;t logged in.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="cp">&lt;?php</span>
+</span><span class='line'><span class="k">public</span> <span class="k">function</span> <span class="nf">preDispatch</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">parent</span><span class="o">::</span><span class="na">preDispatch</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Mage</span><span class="o">::</span><span class="na">getSingleton</span><span class="p">(</span><span class="s1">&#39;customer/session&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">authenticate</span><span class="p">(</span><span class="nv">$this</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setFlag</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;no-dispatch&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[View / Template Cheatsheet]]></title>
+    <link href="http://elachys.github.com/blog/2011/09/14/magento-view-cheatsheet/"/>
+    <updated>2011-09-14T11:28:43+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/09/14/magento-view-cheatsheet</id>
+    <content type="html"><![CDATA[<h2>Currencies and prices</h2>
+
+<p><code>&lt;?php echo Mage::helper('core')-&gt;currency($_product-&gt;getFinalPrice(),true,false); ?&gt;</code></p>
+
+<p>Price without currency symbol
+<code>&lt;?php echo Mage::getModel('directory/currency')-&gt;format($item-&gt;getData('price'), array('display'=&gt;Zend_Currency::NO_SYMBOL), false); ?&gt;</code></p>
+
+<h2>Current page url</h2>
+
+<p><code>echo $this-&gt;helper('core/url')-&gt;getCurrentUrl(); ?&gt;</code></p>
+
+<h2>Sanitize user data</h2>
+
+<p><code>&lt;?php echo $this-&gt;stripTags($_product-&gt;getName(), null, true); ?&gt;</code></p>
+
+<h2>Scaled, Resized image url</h2>
+
+<p><code>&lt;?php echo $this-&gt;helper('catalog/image')
+-&gt;init($_product, 'image')
+-&gt;constrainOnly(TRUE)
+-&gt;keepAspectRatio(TRUE)
+-&gt;keepFrame(FALSE)
+-&gt;resize(180,null); ?&gt;</code></p>
+
+<h2>Dates</h2>
+
+<p><code>&lt;?php echo $this-&gt;formatDate($order-&gt;getCreatedAt(),Mage_Core_Model_Locale::FORMAT_TYPE_FULL); ?&gt;</code>
+possible options include:
+<code>Mage_Core_Model_Locale::FORMAT_TYPE_FULL
+Mage_Core_Model_Locale::FORMAT_TYPE_LONG
+Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM
+Mage_Core_Model_Locale::FORMAT_TYPE_SHORT</code></p>
+
+<h2>Dynamically link to other controllers</h2>
+
+<p>This method of linking shouldn&#8217;t break when you update code in your controllers and can be used in any view.</p>
+
+<p><code>&lt;?php echo $this-&gt;getUrl('model/controller/action'); ?&gt;</code>
+for example
+<code>&lt;?php echo $this-&gt;getUrl('customer/account'); ?&gt;</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Get magento cms contents]]></title>
+    <link href="http://elachys.github.com/blog/2011/09/14/get-magento-cms-contents/"/>
+    <updated>2011-09-14T10:53:29+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/09/14/get-magento-cms-contents</id>
+    <content type="html"><![CDATA[<p>To display content from cms pages or static blocks in your view.</p>
+
+<h2>CMS Static blocks</h2>
+
+<p>getLayout()->createBlock(&#8216;cms/block&#8217;)->setBlockId(&#8216;MY-BLOCK-IDENTIFIER&#8217;)->toHtml(); ?></p>
+
+<h2>CMS page contents</h2>
+
+<p>$page = Mage::getModel(&#8216;cms/page&#8217;)->load(&#8216;MY-CMS-IDENTIFIER&#8217;, &#8216;identifier&#8217;)->getContent();</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fetch all active (visible) categories for a product]]></title>
+    <link href="http://elachys.github.com/blog/2011/08/22/fetch-all-active-visible-categories-for-a-product/"/>
+    <updated>2011-08-22T05:51:49+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/08/22/fetch-all-active-visible-categories-for-a-product</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve seen people doing: <code>$category = $product-&gt;getCategoryCollection()-&gt;getFirstItem()-&gt;load();</code></p>
+
+<p>Which is fine, until someone hide categories, then some links randomly won&#8217;t work if the product is in multiple categories.</p>
+
+<p>The following will filter the category collection to only include active (not hidden) categories.</p>
+
+<p><code>$category = $product-&gt;getCategoryCollection()-&gt;addIsActiveFilter()-&gt;getFirstItem()-&gt;load();</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Magento collection iteration]]></title>
+    <link href="http://elachys.github.com/blog/2011/07/22/magento-collection-iteration/"/>
+    <updated>2011-07-22T06:49:41+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/07/22/magento-collection-iteration</id>
+    <content type="html"><![CDATA[<p>When you get a collection, most of the time you&#8217;ll just be able to do:
+<code>$products = Mage::getModel('catalog/product')-&gt;getCollection()
+-&gt;addAttributeToFilter('status',array('eq' =&gt; 1))
+-&gt;addAttributeToFilter('visibility',array('in' =&gt; array(2,4)))
+-&gt;setPage($i,PER_PAGE);
+foreach($products as $product){
+echo $product-&gt;getSku() . PHP_EOL;
+}
+</code></p>
+
+<p>However, if the collection is very large, you can actually run out of ram doing this. Instead, you should do the following:</p>
+
+<p><code>function productCallback($args)
+{
+echo $args['row']['sku'] . PHP_EOL;
+}
+$products = Mage::getModel('catalog/product')-&gt;getCollection()
+-&gt;addAttributeToFilter('status',array('eq' =&gt; 1))
+-&gt;addAttributeToFilter('visibility',array('in' =&gt; array(2,4)))
+-&gt;setPage($i,PER_PAGE);</code></p>
+
+<p>Mage::getSingleton(&#8216;core/resource_iterator&#8217;)->walk($products->getSelect(), array(&#8216;productCallback&#8217;), array(&#8216;res&#8217;=>$res));</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Magento remove item from cart]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/29/magento-remove-item-from-cart/"/>
+    <updated>2011-06-29T11:10:42+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/29/magento-remove-item-from-cart</id>
+    <content type="html"><![CDATA[<p>Remove product with the SKU &#8216;promo&#8217;.</p>
+
+<p><code>define('PROMO_SKU','promo');
+$session = Mage::getSingleton('checkout/session');
+$quote = $session-&gt;getQuote();</code></p>
+
+<p><code>$cart = Mage::getModel('checkout/cart');
+$cartItems = $cart-&gt;getItems();</code></p>
+
+<p>`foreach($cartItems as $item) {
+if ($item->getSku() == PROMO_SKU){
+$quote->removeItem($item->getId())->save();
+}
+}</p>
+
+<p>`</p>
+
+<p><code>Mage::getSingleton('checkout/session')-&gt;setCartWasUpdated(true);
+$cart-&gt;init();
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Magento: adding an item to your cart]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/29/magento-adding-an-item-to-your-cart/"/>
+    <updated>2011-06-29T11:07:53+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/29/magento-adding-an-item-to-your-cart</id>
+    <content type="html"><![CDATA[<p>The code below will add the product with the sku &#8220;promo&#8221; to your basket.</p>
+
+<p><code>define('THESKU','promo');
+$product = Mage::getModel('catalog/product')-&gt;setStoreId(Mage::app()-&gt;getStore()-&gt;getId());
+$product-&gt;load($product-&gt;getIdBySku(THESKU));</code></p>
+
+<p>`$cart = Mage::getSingleton(&#8216;checkout/cart&#8217;);
+$cart->init();
+$cart->getQuote()->cleanModelCache();</p>
+
+<p>`</p>
+
+<p><code>try {
+$cart-&gt;addProduct($product, array('qty' =&gt; 1));
+$cart-&gt;save();
+Mage::getSingleton('checkout/session')-&gt;setCartWasUpdated(true);
+} catch(Exception $e) {
+die($e-&gt;getMessage());
+}
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Set pear to use beta channel]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/24/set-pear-to-use-beta-channel/"/>
+    <updated>2011-06-24T09:09:16+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/24/set-pear-to-use-beta-channel</id>
+    <content type="html"><![CDATA[<p>Sometimes you just need a little danger in your life.
+If you have php pear installed, you can set it to install beta packages as follows:
+<code>sudo pear config-set preferred_state beta</code></p>
+
+<p>Afterwards, you can set it back by using the following command:
+<code>sudo pear config-set preferred_state stable</code></p>
+
+<p>Note: if you only need to do it for one package. You can always just do:
+<code>pear -d preferred_state=beta install PHP_Beautifier</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Surpress error message in linux commands]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/24/surpress-error-message-in-linux-commands/"/>
+    <updated>2011-06-24T09:06:51+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/24/surpress-error-message-in-linux-commands</id>
+    <content type="html"><![CDATA[<p>When using a command like find, you can pipe all errors to dev null using the following syntax
+<code>find / -name "somefilename" 2&gt;/dev/null</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Red exclamation / question mark buttons in typo3 admin]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/23/red-exclamation-mark-typo3-admin/"/>
+    <updated>2011-06-23T06:02:03+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/23/red-exclamation-mark-typo3-admin</id>
+    <content type="html"><![CDATA[<p>If you&#8217;ve just installed a new module and all your icons in the admin change to red buttons with white exclamation marks in, you simply need to set write permissions on your typo3temp folder.</p>
+
+<p>Just do:
+<code>sudo chmod -R 777 ./htdocs/typo3temp</code></p>
+
+<p>Or you might just be able to delete the contents of typo3temp&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[typo3 page bits]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/21/typo3-page-bits/"/>
+    <updated>2011-06-21T04:35:33+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/21/typo3-page-bits</id>
+    <content type="html"><![CDATA[<h2>Current page url</h2>
+
+<p><code>t3lib_div::getIndpEnv('TYPO3_REQUEST_URL')</code></p>
+
+<h2>Current page id in a module</h2>
+
+<p><code>echo $GLOBALS['TSFE']-&gt;page['uid'];</code></p>
+
+<h2>Typo3 link to any page (based on page id)</h2>
+
+<p><code>echo $GLOBALS['TSFE']-&gt;cObj-&gt;getTypoLink_URL(12345678);</code></p>
+
+<h2>Get Typoscript value in a module</h2>
+
+<h3>Typoscript</h3>
+
+<p><code>somethingtoaccess {
+aproperty = some value
+anotherproperty = bleh lah lah lah
+}
+somethingtoaccess.athirdproperty = falalalala
+</code></p>
+
+<h3>PHP</h3>
+
+<p><code>echo $GLOBALS['TSFE']-&gt;tmpl-&gt;setup['somethingtoaccess.']['aproperty'];</code></p>
+
+<h2>Get page properties from a uid</h2>
+
+<p>Note: the root page will have a pid (parent id) of 0
+<code>$pageSelect = t3lib_div::makeInstance('t3lib_pageSelect');
+$page = $pageSelect-&gt;getPage_noCheck($uid,false);
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Foreign table opposite field relationships in tca]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/14/foreign-table-opposite-field-relationships-in-tca/"/>
+    <updated>2011-06-14T06:28:02+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/14/foreign-table-opposite-field-relationships-in-tca</id>
+    <content type="html"><![CDATA[<p>I had a select box setup in my tca. But in the typo3 admin it always selected the first option.</p>
+
+<p>You can fix this with <code> 'MM_opposite_field' =&gt; 'oppositetable_id'</code></p>
+
+<p>This causes typo3 to look for it&#8217;s currently select option in your foreign table.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[typo3 thumbnails]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/14/typo3-thumbnails/"/>
+    <updated>2011-06-14T04:32:30+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/14/typo3-thumbnails</id>
+    <content type="html"><![CDATA[<p>`$image = t3lib_BEfunc::getThumbNail(&#8216;/typo3/thumbs.php&#8217;, PATH_site . &#8216;uploads/MYMODULENAME/holdingImage324x200.gif&#8217;,</p>
+
+<pre><code>                                            '',300);`
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[typo3 sql debugging]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/09/typo3-sql-debugging/"/>
+    <updated>2011-06-09T10:49:21+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/09/typo3-sql-debugging</id>
+    <content type="html"><![CDATA[<p>Add the following to the bottom of your typo3conf/localconf.php file to get sent to a pretty looking error page when a sql error occurs.</p>
+
+<p>`</p>
+
+<p>$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;displayErrors&#8217;] = &#8216;1&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;devIPmask&#8217;] = &#8216;*&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;errorHandler&#8217;] = &#8216;t3lib_error_ErrorHandler&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;errorHandlerErrors&#8217;] = E_ALL ^ E_NOTICE;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;exceptionalErrors&#8217;] = E_ALL ^ E_NOTICE ^ E_WARNING ^ E_USER_ERROR ^ E_USER_NOTICE ^ E_USER_WARNING;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;debugExceptionHandler&#8217;] = &#8216;t3lib_error_DebugExceptionHandler&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;productionExceptionHandler&#8217;] = &#8216;t3lib_error_DebugExceptionHandler&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;systemLogLevel&#8217;] = &#8216;0&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;systemLog&#8217;] = &#8216;mail,YOUR@EMAILHERE.COM,4;error_log,,2;syslog,LOCAL0,,3;file,/var/www/vhosts/SITEURL/logs/typo3error.log&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;enable_errorDLOG&#8217;] = &#8216;1&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;enable_exceptionDLOG&#8217;] = &#8216;1&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;curlUse&#8217;] = &#8216;1&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;devIPmask&#8217;] = &#8216;127.0.0.1,::1,YOUR_IP_HERE&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;sqlDebug&#8217;] = &#8216;1&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;enable_DLOG&#8217;] = true;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;enable_errorDLOG&#8217;] = &#8216;1&#8217;;
+$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;enable_exceptionDLOG&#8217;] = &#8216;1&#8217;;</p>
+
+<p>$TYPO3_CONF_VARS[&#8216;SYS&#8217;][&#8216;useCachingFramework&#8217;] = &#8216;1&#8217;;</p>
+
+<p>$TYPO3_CONF_VARS[&#8216;FE&#8217;][&#8216;debug&#8217;] = &#8216;1&#8217;;
+`</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tabs in Modules]]></title>
+    <link href="http://elachys.github.com/blog/2011/06/03/tabs-in-modules/"/>
+    <updated>2011-06-03T05:03:16+01:00</updated>
+    <id>http://elachys.github.com/blog/2011/06/03/tabs-in-modules</id>
+    <content type="html"><![CDATA[<p>open:
+<code>./typo3conf/ext/YOUREXTENSION/ext_tables.php</code>
+You need to add <code>'dividers2tabs' =&gt; TRUE</code>
+To show in context:
+`
+$TCA[&#8220;tx_3evmedia_general&#8221;] = Array (</p>
+
+<pre><code>"ctrl" =&gt; Array (
+    'title' =&gt; 'LLL:EXT:3ev_media/locallang_db.xml:tx_3evmedia_general',        
+    'label' =&gt; 'title', 
+    'tstamp' =&gt; 'tstamp',
+    'crdate' =&gt; 'crdate',
+    'cruser_id' =&gt; 'cruser_id',
+    "sortby" =&gt; "sorting",  
+    "delete" =&gt; "deleted",
+    "enablecolumns" =&gt; Array (      
+        "disabled" =&gt; "hidden", 
+        "starttime" =&gt; "starttime", 
+        "endtime" =&gt; "endtime", 
+        "fe_group" =&gt; "fe_group",
+    ),
+    "dynamicConfigFile" =&gt; t3lib_extMgm::extPath($_EXTKEY)."tca.php",
+    "iconfile" =&gt; t3lib_extMgm::extRelPath($_EXTKEY)."icon_tx_3evmedia_general.gif",
+    'dividers2tabs' =&gt; TRUE,    
+),
+"feInterface" =&gt; Array (
+    "fe_admin_fieldList" =&gt; "hidden, starttime, endtime, fe_group, category, title, description, image, yotube_id, attachment, attachment_logged_in, publish_date",
+)
+</code></pre>
+
+<p>);
+`</p>
+
+<p>You then need to set your tabs in tca.php &#8211;div&#8211;; starts a new tab. In this example, the two tabs are called &#8220;General&#8221; and &#8220;Poll&#8221;
+`</p>
+
+<pre><code>"types" =&gt; Array (
+    "0" =&gt; Array("showitem" =&gt; "--div--;General,hidden;;1;;1-1-1, category, title;;;;2-2-2, description;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[mode=ts];3-3-3, image, yotube_id, attachment, attachment_logged_in, publish_date,
+                              --div--;Poll,image")
+),
+</code></pre>
+
+<p>`</p>
+]]></content>
+  </entry>
+  
+</feed>
